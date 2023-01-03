@@ -1,7 +1,6 @@
 FROM alpine:3.13
 RUN apk add fuse fuse-dev bash
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
-    && apk --update add tzdata \
+RUN apk --update add tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/shanghai" > /etc/timezone \
     && apk del tzdata && \
