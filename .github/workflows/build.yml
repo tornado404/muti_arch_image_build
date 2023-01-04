@@ -1,8 +1,7 @@
 name: Build Image and Publish to Dockerhub
 
 on:
-  release:
-    types: [ created ]
+  push
   workflow_dispatch:
     inputs:
       tag:
@@ -49,7 +48,7 @@ jobs:
       # prepare image tags
       - name: Prepare Image Tags
         run: |
-          echo "TAG_PF=paddleflow/alpine:${{ env.TAG_NAME }}" >> $GITHUB_ENV
+          echo "TAG_PF=paddleflow/ubuntu:latest" >> $GITHUB_ENV
 
       - name: Build and push image
         uses: docker/build-push-action@v3
