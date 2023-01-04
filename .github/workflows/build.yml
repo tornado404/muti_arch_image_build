@@ -1,7 +1,8 @@
 name: Build Image and Publish to Dockerhub
 
-on: [push]
-
+on:
+  release:
+    types: [ created ]
   workflow_dispatch:
     inputs:
       tag:
