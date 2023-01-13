@@ -1,3 +1,20 @@
-FROM ubuntu:latest
-#RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.aliyun.com@g" /etc/apt/sources.list && sed -i "s@http://.*security.ubuntu.com@http://mirrors.aliyun.com@g" /etc/apt/sources.list
-RUN apt-get update && apt-get install -y libfuse-dev fuse gcc automake autoconf libtool make tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+FROM paddleflow/ubuntu:latest
+USER root
+
+RUN apt-get update && apt-get install software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get update && apt-get install -y python3.8
+RUN apt-get update && apt-get install -y vim libstdc++-static glibc-static fuse wget fuse fuse-dev mesa-libGL.x86_64 && cd /usr/local/src && wget https://go.dev/dl/go1.18.7.linux-amd64.tar.gz && tar -zxvf go1.18.7.linux-amd64.tar.gz -C /usr/local/ && python -m pip install --upgrade pip && python -m pip install pytest  pytest-html wheel six click setuptools urllib3
+ENV GO111MODULE=on
+ENV GOROOT=/usr/local/go
+ENV GOPATH=/home/gopath
+ENV GOBIN=/home/gopath/bin
+ENV GOPROXY=https://goproxy.cn,direct
+ENV GO111MODULE=on
+ENV PATH=$PATH:$GOROOT/bin
+ENV PATH=$GOPATH/bin/:$PATH
+RUN mkdir -p /home/gopath
+WORKDIR /paddleflow
+ENV CGO_ENABLED=0
+ENV GOOS=linux
+RUN go version
+RUN python -m pip install paddlepaddle==2.3.1
+RUN python -m pip install matplotlib prettytable ujson opencv-python==4.4.0.46 pillow tqdm PyYAML scipy visualdl scikit-learn gast faiss-cpu
