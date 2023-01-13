@@ -1,7 +1,10 @@
 FROM paddleflow/ubuntu:latest
 USER root
 
-RUN apt-get update && apt-get install software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get update && apt-get install -y python3.8
+RUN apt-get update
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa && apt-get update
+RUN apt-get install -y python3.8
 RUN apt-get update && apt-get install -y vim libstdc++-static glibc-static fuse wget fuse fuse-dev mesa-libGL.x86_64 && cd /usr/local/src && wget https://go.dev/dl/go1.18.7.linux-amd64.tar.gz && tar -zxvf go1.18.7.linux-amd64.tar.gz -C /usr/local/ && python -m pip install --upgrade pip && python -m pip install pytest  pytest-html wheel six click setuptools urllib3
 ENV GO111MODULE=on
 ENV GOROOT=/usr/local/go
