@@ -1,8 +1,9 @@
 FROM paddleflow/test:latest
 USER root
 # python
+RUN ln -s /usr/bin/python3.8 /usr/bin/python && apt-get update && apt-get install -y python3-pip vim wget && python -m pip install --upgrade pip && python -m pip install pytest  pytest-html wheel six click setuptools urllib3
 # failed to install libstdc++-static glibc-static mesa-libGL.x86_64
-RUN ln -s /usr/bin/python3.8 /usr/bin/python && apt-get update && apt-get install -y vim wget && cd /usr/local/src && wget https://go.dev/dl/go1.18.7.linux-amd64.tar.gz && tar -zxvf go1.18.7.linux-amd64.tar.gz -C /usr/local/ && python -m pip install --upgrade pip && python -m pip install pytest  pytest-html wheel six click setuptools urllib3
+RUN cd /usr/local/src && wget https://go.dev/dl/go1.18.7.linux-amd64.tar.gz && tar -zxvf go1.18.7.linux-amd64.tar.gz -C /usr/local/
 ENV GO111MODULE=on
 ENV GOROOT=/usr/local/go
 ENV GOPATH=/home/gopath
