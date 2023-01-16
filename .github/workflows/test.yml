@@ -33,7 +33,7 @@ jobs:
       # prepare image tags
       - name: Prepare Image Tags
         run: |
-          echo "TAG_PF=paddleflow/ubuntu:latest" >> $GITHUB_ENV
+          echo "TAG_PF=zzc932/test:1" >> $GITHUB_ENV
 
       - name: Build and push image
         uses: docker/build-push-action@v3
