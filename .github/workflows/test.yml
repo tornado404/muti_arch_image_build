@@ -1,4 +1,7 @@
 name: test img
+env:
+  IMAGE_WITH_TAG: paddlef/asdasd:2
+  PLATFORMS: linux/amd64,linux/arm/v7,linux/arm64
 
 on: push
 permissions:
@@ -30,18 +33,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
 
-      # prepare image tags
-      - name: Prepare Image Tags
-        run: |
-          echo "TAG_PF=zzc932/test:1" >> $GITHUB_ENV
-
       - name: Build and push image
         uses: docker/build-push-action@v3
         with:
           context: .
           file: ./dockerfiles/Dockerfile
-          platforms: linux/amd64
+          platforms: ${{ env.PLATFORMS }}
           push: true
           tags: |
-            ${{ env.TAG_PF }}
+            ${{ env.IMAGE_WITH_TAG }}
 
