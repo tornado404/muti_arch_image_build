@@ -33,7 +33,7 @@
 
 
 ### Dockerfile
-zzc932/githubcli:1
+zzc932/githubcli:latest
 ```
 FROM ubuntu:18.04
 #RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list && rm -Rf /var/lib/apt/lists/* && apt-get update
@@ -44,6 +44,9 @@ RUN type -p curl >/dev/null ||  apt install curl -y \
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" |  tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 &&  apt update \
 &&  apt install -y gh vim curl wget 
+
+WORKDIR /build
+ADD execute.sh /build
 ```
 
 
