@@ -4,17 +4,23 @@
 镜像构建现状：
 
 - 404Not found、从`apt-get update`到`docker pull`、`github`访问不通等多重问题困扰，原本轻易能实现的镜像构建变成了一天以上的工作量；
-- 换个思路，可以去vlutr网站购买一台海外服务器实例，构建完镜像并推送到dockerhub，就销毁，这种方式的金钱消耗<0.5元，耗时将缩短至服务器的购买时间5min+创建时间15min（没错，创建到真正能ssh登录耗时约15min）
+- 换个思路，可以去vlutr网站购买一台海外服务器实例，构建完镜像并推送到dockerhub，就销毁，这种方式的金钱消耗<0.5元/次，耗时将缩短至服务器的购买时间5min+创建时间15min（没错，创建到真正能ssh登录耗时约15min）
 
-功能概括：
+`muti_arch_image_build`功能概括：
 
-- 无视网络限制，利用github Action进行镜像构建并推送到dockerhub
+- 镜像构建无障碍，利用GitHub服务器的网络能力进行镜像构建,流畅安装各种包，并推送到dockerhub
 - 构建流程全程透明可见，无需担心隐私信息泄露
+- 单次构建耗时低于10min
+- 镜像构建使用github服务器,镜像存储使用dockerhub,0成本
 
 解决了什么问题：
 
 1. 国内网络问题，DNS不通，大量依赖包需要配置国内源才能下载安装
 2. 全程免费
+
+适用场景:
+- 因不可抗力导致镜像构建困难,大量包无法下载
+- 镜像里不存储你的银行卡密码
 
 注意：我想没有人会将敏感信息打到镜像里
 
@@ -55,7 +61,7 @@ ADD execute.sh /build
 
 ### 容器内执行的脚本内容
 
- 
+
 
 
 ```
@@ -90,7 +96,7 @@ gh auth setup-git
 git add /repo/$image_repo/.github/workflows/test.yml && git add . && git commit -m "update image" && git push
 ```
 
-## 使用
+## 2. 使用
 ### 初始化信息
 
 #### 配置github、docker、镜像信息
