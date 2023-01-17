@@ -4,7 +4,7 @@ $github_token
 EOF
 # login your github repo
 gh auth login --with-token < /tmp/token.txt
-gh repo view /$image_repo
+gh repo view $github_account/$image_repo
 # 下载代码库
 # download repo
 mkdir /repo && cd /repo
