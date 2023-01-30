@@ -1,6 +1,6 @@
 # 避免网络不通导致依赖包无法安装的镜像构建方法
 <p>
-  <img src="https://github.com/tornado404/muti_arch_image_build/blob/master/demo.gif?raw=true" width="500" />
+  <img src="https://github.com/tornado404/muti_arch_image_build/blob/master/demo.gif?raw=true"  />
   
 </p>
 
@@ -24,9 +24,7 @@
 
 适用场景:
 - 因不可抗力导致镜像构建困难,大量包无法下载
-- 镜像里不存储你的银行卡密码
-
-注意：我想没有人会将敏感信息打到镜像里
+- 镜像里不存储你的银行卡密码(我想没有人会将敏感信息打到镜像里)
 
 
 
