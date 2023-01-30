@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get install -y wget
 RUN cd /usr/local/src && wget https://studygolang.com/dl/golang/go1.18.8.linux-amd64.tar.gz && tar -zxvf go1.18.8.linux-amd64.tar.gz -C /usr/local/  
 ENV GOROOT=/usr/local/go
 ENV GOPATH=/home/gopath
