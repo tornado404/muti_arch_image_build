@@ -7,4 +7,8 @@ ENV GOPATH=/home/gopath
 ENV GOBIN=/home/gopath/bin
 ENV GOPROXY=https://goproxy.cn,direct
 ENV GO111MODULE=on
-
+ENV PATH=$PATH:$GOROOT/bin
+ENV PATH=$GOPATH/bin/:$PATH
+WORKDIR /paddleflow
+ENV CGO_ENABLED=1
+ENV GOOS=linux
