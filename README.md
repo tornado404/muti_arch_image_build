@@ -1,4 +1,8 @@
 # 避免网络不通导致依赖包无法安装的镜像构建方法
+<p>
+  <img src="https://github.com/tornado404/muti_arch_image_build/blob/master/demo.gif?raw=true" width="500" />
+  
+</p>
 
 ## 简介
 镜像构建现状：
