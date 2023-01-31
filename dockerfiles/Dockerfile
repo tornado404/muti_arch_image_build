@@ -13,10 +13,9 @@ ENV PATH=$GOPATH/bin/:$PATH
 WORKDIR /paddleflow
 ENV CGO_ENABLED=1
 ENV GOOS=linux
-
-wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
-tar -xvf Python-3.7.3.tgz
-cd Python-3.7.3
-./configure --enable-loadable-sqlite-extensions
-make
-make install
+RUN wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz && \
+ tar -xvf Python-3.7.3.tgz && \
+ cd Python-3.7.3 &&\
+ ./configure --enable-loadable-sqlite-extensions && \
+ make && \
+ make install
