@@ -1,4 +1,4 @@
-FROM paddleflow/ubuntu:latest
+FROM ubuntu:18.04
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update &&apt-get install -y wget gcc automake autoconf libtool make git
