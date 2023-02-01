@@ -13,7 +13,7 @@ ENV PATH=$GOPATH/bin/:$PATH
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 WORKDIR /paddleflow
-ENV CGO_ENABLED=1
+ENV CGO_ENABLED=0
 ENV GOOS=linux
 RUN apt-get update && apt-get install -y software-properties-common gcc && \
     add-apt-repository -y ppa:deadsnakes/ppa
