@@ -13,4 +13,4 @@ ENV PATH=$GOPATH/bin/:$PATH
 WORKDIR /paddleflow
 ENV CGO_ENABLED=1
 ENV GOOS=linux
-
+RUN ln -s /usr/bin/python3.8 /usr/bin/python
