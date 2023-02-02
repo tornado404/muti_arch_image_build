@@ -1,6 +1,6 @@
 name: test img
 env:
-  IMAGE_WITH_TAG: zzc932/pfbuild:v2.5
+  IMAGE_WITH_TAG: zzc932/pfbase:v0.1
   PLATFORMS: linux/amd64,linux/arm/v7,linux/arm64
 
 on: push
