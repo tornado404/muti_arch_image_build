@@ -4,9 +4,9 @@ FROM ubuntu:18.04
 ARG TINI_VERSION=v0.18.0
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN curl -L https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini -o /usr/bin/tini && chmod +x /usr/bin/tini && ln /usr/bin/tini /sbin/tini
 RUN apt-get update && \
  apt-get install -y wget curl vim && \
  apt-get install -y libfuse-dev fuse gcc automake autoconf libtool make && \
  apt-get install -y tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN curl -L https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini -o /usr/bin/tini && chmod +x /usr/bin/tini && ln /usr/bin/tini /sbin/tini
 
