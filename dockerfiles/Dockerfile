@@ -1,12 +1,10 @@
 FROM ubuntu:18.04
+#FROM ubuntu:latest
+# unsupport latest in our pr-test cluster, it will be update to latest once cluster updated
+
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TINI_VERSION v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
-RUN chmod +x /sbin/tini
-
-#RUN apt-get update && apt-get install -y tini && ln /usr/bin/tini /sbin/tini
- 
-RUN apt-get update && apt-get install -y libfuse-dev fuse gcc automake autoconf libtool make 
-RUN apt-get update && apt-get install -y tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
-
+RUN apt-get update && \
+ apt-get install -y tini && ln /usr/bin/tini /sbin/tini && \
+ apt-get install -y wget && curl && vim && \
+ apt-get install -y libfuse-dev fuse gcc automake autoconf libtool make && \
+ apt-get install -y tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
