@@ -1,4 +1,4 @@
-FROM nvidia/opencl:devel-ubuntu18.04                                                             
+FROM ubuntu:latest                                                            
                                                                               
 ENV TZ=Asia/Shanghai                                                          
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libatlas-base-dev \
         doxygen \
         ninja-build \
+        nvidia-opencl-dev
         ca-certificates && \               
     rm -rf /var/lib/apt/lists/* && \       
     ln -s /usr/bin/python3 /usr/bin/python 
