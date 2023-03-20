@@ -2,8 +2,8 @@ FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ocl-icd-libopencl1 \
-        clinfo && \
-    rm -rf /var/lib/apt/lists/*
+        clinfo  
+        
 # https://gitlab.com/nvidia/container-images/opencl/-/blob/ubuntu18.04/runtime/Dockerfile
 
 # RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -52,7 +52,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates && \               
     rm -rf /var/lib/apt/lists/* && \       
     ln -s /usr/bin/python3 /usr/bin/python 
+
 RUN pip3 install --upgrade cmake pip jupyter
+
 WORKDIR /workspace
 RUN git clone --branch v10.0.0 https://github.com/halide/Halide.git && \
     cd Halide && \
