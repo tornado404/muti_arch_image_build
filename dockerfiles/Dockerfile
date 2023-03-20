@@ -49,9 +49,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libatlas-base-dev \
         doxygen \
         ninja-build \
-        ca-certificates && \               
-    rm -rf /var/lib/apt/lists/* && \       
-    ln -s /usr/bin/python3 /usr/bin/python 
+        ca-certificates           
+RUN rm -rf /var/lib/apt/lists/* && ln -s /usr/bin/python3 /usr/bin/python 
 
 RUN pip3 install --upgrade cmake pip jupyter
 
