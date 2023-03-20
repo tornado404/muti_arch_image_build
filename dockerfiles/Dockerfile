@@ -1,4 +1,24 @@
 FROM ubuntu:latest                                                            
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ocl-icd-libopencl1 \
+        clinfo && \
+    rm -rf /var/lib/apt/lists/*
+# https://gitlab.com/nvidia/container-images/opencl/-/blob/ubuntu18.04/runtime/Dockerfile
+
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#        ocl-icd-opencl-dev && \
+#    rm -rf /var/lib/apt/lists/*
+
+#         nvidia-opencl-dev
+
+
+RUN mkdir -p /etc/OpenCL/vendors && \
+    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
+
+# nvidia-container-runtime
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
                                                                               
 ENV TZ=Asia/Shanghai                                                          
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -29,7 +49,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libatlas-base-dev \
         doxygen \
         ninja-build \
-        nvidia-opencl-dev
         ca-certificates && \               
     rm -rf /var/lib/apt/lists/* && \       
     ln -s /usr/bin/python3 /usr/bin/python 
