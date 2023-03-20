@@ -1,6 +1,6 @@
 name: test img
 env:
-  IMAGE_WITH_TAG: zzc932/ubuntu:18.04-rc1
+  IMAGE_WITH_TAG: zzc932/autokernel:opencl
   PLATFORMS: linux/amd64,linux/arm/v7,linux/arm64
 
 on: push
