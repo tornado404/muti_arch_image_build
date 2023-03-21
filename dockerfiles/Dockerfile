@@ -22,7 +22,8 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
                                                                               
 ENV TZ=Asia/Shanghai                                                          
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-                                                                              
+
+      
 RUN apt-get update && apt-get install -y --no-install-recommends \
         g++ \
         git \
@@ -32,6 +33,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-dev \
         python3-pip \
         python3-setuptools \
+        python3-numpy \
+        python3-scipy \
+        python3-imageio \
+        python3-pybind11 \
+        doxygen \
+        ninja-build \
+        ca-certificates    
+        
+        
+RUN apt-get update && apt-get install -y \
         clang-tools-10 \
         lld-10 \
         llvm-10-dev \
@@ -40,16 +51,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpng-dev \
         libjpeg-dev \
         libgl-dev \
-        python3-numpy \
-        python3-scipy \
-        python3-imageio \
-        python3-pybind11 \
         libopenblas-dev \
         libeigen3-dev \
-        libatlas-base-dev \
-        doxygen \
-        ninja-build \
-        ca-certificates           
+        libatlas-base-dev
+          
 RUN rm -rf /var/lib/apt/lists/* && ln -s /usr/bin/python3 /usr/bin/python 
 
 RUN pip3 install --upgrade cmake pip jupyter
