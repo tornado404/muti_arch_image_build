@@ -42,18 +42,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates    
         
         
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        clang-tools-10 \
-        lld-10 \
-        llvm-10-dev \
-        libclang-10-dev \
-        liblld-10-dev \
-        libpng-dev \
-        libjpeg-dev \
-        libgl-dev \
-        libopenblas-dev \
-        libeigen3-dev \
-        libatlas-base-dev
+#RUN apt-get update && apt-get install -y --no-install-recommends \
+#        clang-tools-10 \
+#        lld-10 \
+#        llvm-10-dev \
+#        libclang-10-dev \
+#        liblld-10-dev \
+#        libpng-dev \
+#        libjpeg-dev \
+#        libgl-dev \
+#        libopenblas-dev \
+#        libeigen3-dev \
+#        libatlas-base-dev
           
 RUN rm -rf /var/lib/apt/lists/* && ln -s /usr/bin/python3 /usr/bin/python 
 
