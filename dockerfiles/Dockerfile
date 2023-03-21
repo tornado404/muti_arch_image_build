@@ -1,4 +1,4 @@
-FROM ubuntu:latest                                                            
+FROM chrissx/llvm:latest                                                            
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ocl-icd-libopencl1 \
@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates    
         
         
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         clang-tools-10 \
         lld-10 \
         llvm-10-dev \
