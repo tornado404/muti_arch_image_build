@@ -1,6 +1,6 @@
 name: test img
 env:
-  IMAGE_WITH_TAG: zzc932/autokernel:opencl
+  IMAGE_WITH_TAG: zzc932/pytorch:1.13.0-py3.9.12-cuda11.7.1-ubuntu20.04
   PLATFORMS: linux/amd64
   # ,linux/arm64
 
