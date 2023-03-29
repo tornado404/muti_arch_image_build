@@ -1,6 +1,6 @@
 name: test img
 env:
-  IMAGE_WITH_TAG: zzc932/pytorch:1.13.0-py3.9.12-cuda11.7.1-ubuntu20.04
+  IMAGE_WITH_TAG: zzc932/test:1
   PLATFORMS: linux/amd64
   # ,linux/arm64
 
@@ -32,7 +32,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+      - name: get_image
+        run: |
+          image=`head -n 1 Dockerfile | sed 's/^[^#]*# //'`
+          echo "IMAGE_WITH_TAG=${image}" >> $GITHUB_ENV
 
       - name: Build and push image
         uses: docker/build-push-action@v3
