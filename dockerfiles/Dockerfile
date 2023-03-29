@@ -1,3 +1,4 @@
+# zzc932/pytorch:1.13.0-py3.9.12-cuda11.7.1-ubuntu20.04-dev
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
 # CPU版本
@@ -38,3 +39,5 @@ RUN pip install ninja
 RUN cd /tmp && apt-get update && apt-get install -y git && \
 git clone https://github.com/facebookresearch/detectron2.git && \
 python -m pip install -e detectron2 jupyter
+
+RUN apt-get update && apt-get install -y curl zip unzip vim lrzsz tar
