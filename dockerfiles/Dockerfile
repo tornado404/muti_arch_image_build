@@ -1,4 +1,4 @@
-# zzc932/pytorch:1.13.0-py3.9.12-cuda11.7.1-ubuntu20.04-dev
+# zzc932/pytorch:1.13.0-py3.9.12-cuda11.7.1-ubuntu20.04-dt-dev
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
 # CPU版本
@@ -37,7 +37,9 @@ RUN pip3 install torch==1.10.2+cu113 torchvision==0.11.3+cu113 torchaudio==0.10.
 # gcc & g++ ≥ 5.4 are required. ninja 
 RUN pip install ninja
 RUN cd /tmp && apt-get update && apt-get install -y git && \
-git clone https://github.com/facebookresearch/detectron2.git && \
-python -m pip install -e detectron2 jupyter
+#python -m pip install -e  jupyter && \
+python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
+#git clone https://github.com/facebookresearch/detectron2.git && \
+#python -m pip install -e detectron2 jupyter
 
 RUN apt-get update && apt-get install -y curl zip unzip vim lrzsz tar
