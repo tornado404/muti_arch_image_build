@@ -3,8 +3,11 @@
 FROM zzc932/pytorch:1.13.0-py3.9.12-cuda11.7.1-ubuntu20.04-easymocap
 # export http_proxy=http://127.0.0.1:8000
 # export https_proxy=http://127.0.0.1:8000
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN rm -f /etc/apt/sources.list.d/cuda.list && \
     apt-get update && \
+    DEBIAN_FRONTEND=noninteractive TZ=Asia/Shanghai apt-get -y install tzdata && \
     apt-get install -y libprotobuf-dev protobuf-compiler libgoogle-glog-dev libopencv-dev libboost-all-dev libhdf5-dev libatlas-base-dev python3-opencv cmake
 # openpose
 RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git --depth 1 && \
