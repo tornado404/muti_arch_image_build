@@ -1,9 +1,8 @@
 # zzc932/pytorch:1.9.1-py3.9-cuda11.1.1-ubuntu20.04
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
-
+SHELL ["/bin/bash", "-c"]
 # 安装基础包
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
-    apt update && \
+RUN apt update && \
     DEBIAN_FRONTEND=noninteractive TZ=Asia/Shanghai apt-get -y install tzdata && \
     apt install -y \
         build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev \
@@ -25,7 +24,6 @@ WORKDIR /temp
 #pip3 install torch==1.10.2+cu113 torchvision==0.11.3+cu113 torchaudio==0.10.2+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 # easyMocap
 RUN git clone https://github.com/zju3dv/EasyMocap.git && \
-    bash && \
     conda create -n easymocap python=3.9 -y && \
     conda activate easymocap && \
     wget -c https://download.pytorch.org/whl/cu111/torch-1.9.1%2Bcu111-cp39-cp39-linux_x86_64.whl && \
@@ -37,11 +35,8 @@ RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     python setup.py develop &&\
     echo "conda activate easymocap" >> ~/.bashrc && \
     pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
-
 #or git clone https://github.com/facebookresearch/detectron2.git && \
 #python -m pip install -e detectron2 jupyter
-
-
 
 # openpose
 #RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git --depth 1 && \
