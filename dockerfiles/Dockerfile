@@ -32,10 +32,10 @@ RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     conda activate easymocap && \
     wget -c https://download.pytorch.org/whl/cu111/torch-1.9.1%2Bcu111-cp39-cp39-linux_x86_64.whl && \
     wget -c https://download.pytorch.org/whl/cu111/torchvision-0.10.1%2Bcu111-cp39-cp39-linux_x86_64.whl && \
-    python3 -m pip install ./torch-1.9.1+cu111-cp39-cp39-linux_x86_64.whl && \
-    python3 -m pip install ./torchvision-0.10.1+cu111-cp39-cp39-linux_x86_64.whl && \
-    python -m pip install -r requirements.txt && \
-    python3 -m pip install pyrender ffmpeg mediapipe jupyter ninja && \
+    python -m pip install ./torch-1.9.1+cu111-cp39-cp39-linux_x86_64.whl && \
+    python -m pip install ./torchvision-0.10.1+cu111-cp39-cp39-linux_x86_64.whl && \
+    cd EasyMocap && python -m pip install -r requirements.txt && \
+    python -m pip install pyrender ffmpeg mediapipe jupyter ninja && \
     python setup.py develop && \
     pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
 #or git clone https://github.com/facebookresearch/detectron2.git && \
