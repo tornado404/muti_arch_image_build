@@ -1,6 +1,7 @@
 # zzc932/pytorch:1.9.1-py3.9-cuda11.1.1-ubuntu20.04
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
+# 安装基础包
 RUN apt update && \
     apt install -y \
         build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev \
@@ -13,20 +14,11 @@ RUN apt update && \
 
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && bash Miniconda3-py39_23.1.0-1-Linux-x86_64.sh
 
-
 WORKDIR /temp
 
-RUN wget https://www.python.org/ftp/python/3.9.10/Python-3.9.10.tgz && \
-    tar -xvf Python-3.9.10.tgz && \
-    cd Python-3.9.10 && \
-    ./configure --enable-optimizations && \
-    make && \
-    make install && \
-    ln -s /usr/local/bin/python3 /usr/local/bin/python && \
-    ln -s /usr/local/bin/pip3 /usr/local/bin/pip && \
-    pip3 install ffmpeg mediapipe jupyter ninja && \
-    rm -r /root/.cache/pip
-
+# 下载python
+#pip3 install torch==1.10.2+cu113 torchvision==0.11.3+cu113 torchaudio==0.10.2+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+# easyMocap
 RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     conda create -n easymocap python=3.9 -y && \
     conda activate easymocap && \
@@ -35,10 +27,32 @@ RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     python3 -m pip install ./torch-1.9.1+cu111-cp39-cp39-linux_x86_64.whl && \
     python3 -m pip install ./torchvision-0.10.1+cu111-cp39-cp39-linux_x86_64.whl && \
     python -m pip install -r requirements.txt && \
-    python3 -m pip install pyrender && \
+    python3 -m pip install pyrender ffmpeg mediapipe jupyter ninja && \
     python setup.py develop
-
+    
+# detectron2
 RUN cd /tmp && \
 python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
 
+#or git clone https://github.com/facebookresearch/detectron2.git && \
+#python -m pip install -e detectron2 jupyter
+
+
+
+# openpose
+#RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git --depth 1 && \
+#    cd openpose && \
+#    git submodule update --init --recursive --remote && \
+#    mkdir build && \
+#    cd build && \
+#    cmake .. -DBUILD_PYTHON=true && \
+#    make -j8
+# Yolov4+HRNet
+#RUN cd .. && \
+#    mkdir -p data/models && \
+#    wget -c https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights && \
+#    mv yolov4.weights data/models
+
 WORKDIR /workspace
+# export http_proxy=http://127.0.0.1:8000
+# export https_proxy=http://127.0.0.1:8000
