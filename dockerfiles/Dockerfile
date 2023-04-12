@@ -17,7 +17,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && \
     bash Miniconda3-py39_23.1.0-1-Linux-x86_64.sh -b -p /miniconda && \
     source /miniconda/bin/activate && \
-    conda init \
+    conda init bash \
 
 WORKDIR /temp
 
