@@ -13,7 +13,7 @@ RUN apt update && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && bash Miniconda3-py39_23.1.0-1-Linux-x86_64.sh
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && bash Miniconda3-py39_23.1.0-1-Linux-x86_64.sh -b -p /miniconda
 
 WORKDIR /temp
 
