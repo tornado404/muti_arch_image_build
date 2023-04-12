@@ -15,15 +15,16 @@ RUN apt update && \
     wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && \
     bash Miniconda3-py39_23.1.0-1-Linux-x86_64.sh -b -p /miniconda && \
     rm -f Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && \
-    echo 'export PATH="/miniconda/bin:$PATH"'  >> ~/.bashrc
+    echo 'export PATH="/miniconda/bin:$PATH"'  >> ~/.bashrc && \
+    source ~/.bashrc && \
+    conda init bash
 ENV PATH /miniconda/bin:$PATH
 WORKDIR /temp
 
 # 下载python
 #pip3 install torch==1.10.2+cu113 torchvision==0.11.3+cu113 torchaudio==0.10.2+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 # easyMocap
-RUN conda init bash && \
-    git clone https://github.com/zju3dv/EasyMocap.git && \
+RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     conda create -n easymocap python=3.9 -y && \
     conda activate easymocap && \
     wget -c https://download.pytorch.org/whl/cu111/torch-1.9.1%2Bcu111-cp39-cp39-linux_x86_64.whl && \
