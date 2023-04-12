@@ -36,7 +36,6 @@ RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     python -m pip install ./torchvision-0.10.1+cu111-cp39-cp39-linux_x86_64.whl && \
     cd EasyMocap && python -m pip install -r requirements.txt && \
     python -m pip install pyrender ffmpeg mediapipe jupyter ninja scikit-image networks open3d==0.14.1 Flask==2.1.0  && \
-    pip install open3d-0.17.0+a5be78c-cp39-cp39-manylinux_2_27_x86_64.whl && \
     python setup.py develop && \
     pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html && \
     conda install -c fvcore -c iopath -c conda-forge fvcore iopath && \
