@@ -2,7 +2,8 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
 # 安装基础包
-RUN apt update && \
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
+    apt update && \
     DEBIAN_FRONTEND=noninteractive TZ=Asia/Shanghai apt-get -y install tzdata && \
     apt install -y \
         build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev \
@@ -16,7 +17,7 @@ RUN apt update && \
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && \
     bash Miniconda3-py39_23.1.0-1-Linux-x86_64.sh -b -p /miniconda && \
     source /miniconda/bin/activate && \
-    conda init bash \
+    conda init \
 
 WORKDIR /temp
 
