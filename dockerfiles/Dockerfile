@@ -16,8 +16,8 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
 
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && \
     bash Miniconda3-py39_23.1.0-1-Linux-x86_64.sh -b -p /miniconda && \
-    source /miniconda/bin/activate && \
-    conda init bash \
+    echo ". /miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    source /miniconda/bin/activate
 
 WORKDIR /temp
 
@@ -25,6 +25,7 @@ WORKDIR /temp
 #pip3 install torch==1.10.2+cu113 torchvision==0.11.3+cu113 torchaudio==0.10.2+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 # easyMocap
 RUN git clone https://github.com/zju3dv/EasyMocap.git && \
+    bash && \
     conda create -n easymocap python=3.9 -y && \
     conda activate easymocap && \
     wget -c https://download.pytorch.org/whl/cu111/torch-1.9.1%2Bcu111-cp39-cp39-linux_x86_64.whl && \
@@ -33,11 +34,9 @@ RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     python3 -m pip install ./torchvision-0.10.1+cu111-cp39-cp39-linux_x86_64.whl && \
     python -m pip install -r requirements.txt && \
     python3 -m pip install pyrender ffmpeg mediapipe jupyter ninja && \
-    python setup.py develop
-    
-# detectron2
-RUN cd /tmp && \
-python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
+    python setup.py develop &&\
+    echo "conda activate easymocap" >> ~/.bashrc && \
+    pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
 
 #or git clone https://github.com/facebookresearch/detectron2.git && \
 #python -m pip install -e detectron2 jupyter
