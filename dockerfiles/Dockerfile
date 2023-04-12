@@ -17,7 +17,7 @@ RUN apt update && \
     rm -f Miniconda3-py39_23.1.0-1-Linux-x86_64.sh && \
     echo 'export PATH="/miniconda/bin:$PATH"'  >> ~/.bashrc && \
     source ~/.bashrc && \
-    conda init bash
+    /miniconda/bin/conda init bash
 ENV PATH /miniconda/bin:$PATH
 WORKDIR /temp
 
