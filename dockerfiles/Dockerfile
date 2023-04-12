@@ -23,7 +23,8 @@ WORKDIR /temp
 # 下载python
 #pip3 install torch==1.10.2+cu113 torchvision==0.11.3+cu113 torchaudio==0.10.2+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 # easyMocap
-RUN git clone https://github.com/zju3dv/EasyMocap.git && \
+RUN source /miniconda/bin/activate && \
+    git clone https://github.com/zju3dv/EasyMocap.git && \
     conda create -n easymocap python=3.9 -y && \
     conda activate easymocap && \
     wget -c https://download.pytorch.org/whl/cu111/torch-1.9.1%2Bcu111-cp39-cp39-linux_x86_64.whl && \
@@ -32,7 +33,7 @@ RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     python3 -m pip install ./torchvision-0.10.1+cu111-cp39-cp39-linux_x86_64.whl && \
     python -m pip install -r requirements.txt && \
     python3 -m pip install pyrender ffmpeg mediapipe jupyter ninja && \
-    python setup.py develop &&\
+    python setup.py develop && \
     echo "conda activate easymocap" >> ~/.bashrc && \
     pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
 #or git clone https://github.com/facebookresearch/detectron2.git && \
