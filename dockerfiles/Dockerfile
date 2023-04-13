@@ -41,7 +41,7 @@ RUN git clone https://github.com/zju3dv/EasyMocap.git && \
     conda install -c fvcore -c iopath -c conda-forge fvcore iopath && \
     conda install -c bottler nvidiacub && \
     conda install pytorch3d -c pytorch3d && \
-    conda install njnja && \
+    conda install -c conda-forge ninja && \
     git clone https://github.com/facebookresearch/pytorch3d.git --depth=1 && \
     cd pytorch3d && pip install -e .
 #or git clone https://github.com/facebookresearch/detectron2.git && \
