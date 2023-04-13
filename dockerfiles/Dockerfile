@@ -30,7 +30,7 @@ RUN apt update && \
     python -m pip install ./torchvision-0.10.1+cu111-cp39-cp39-linux_x86_64.whl && \
     rm -f ./torch*.whl && \
     cd EasyMocap && python -m pip install -r requirements.txt && \
-    python -m pip install pyrender ffmpeg mediapipe jupyter ninja scikit-image networks open3d==0.14.1 Flask==2.1.0  && \
+    python -m pip install pyrender ffmpeg mediapipe jupyter ninja scikit-image networks open3d==0.14.1 Flask==2.1.0 numpy==1.23.3  && \
     python setup.py develop && \
     pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html && \
     git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git --depth 1 && \
